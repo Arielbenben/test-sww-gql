@@ -23,7 +23,7 @@ class AddMission(Mutation):
 
 class DeleteMission(Mutation):
     class Arguments:
-        mission_id = Int()
+        mission_id = Int(required=True)
 
     success = Field(Boolean)
 

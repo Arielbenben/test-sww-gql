@@ -7,11 +7,11 @@ from app.repository.target_repository import add_target
 
 class AddTarget(Mutation):
     class Arguments:
-        mission_id = Int()
-        target_industry = String()
-        city_id = Int()
-        target_type_id = Int()
-        target_priority = Int()
+        mission_id = Int(required=True)
+        target_industry = String(required=True)
+        city_id = Int(required=True)
+        target_type_id = Int(required=True)
+        target_priority = Int(required=True)
 
     target = Field(TargetType)
 
