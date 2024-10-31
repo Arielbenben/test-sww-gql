@@ -13,4 +13,5 @@ def add_target(target: Target):
             session.refresh(target)
             return Success(target)
         except Exception as e:
+            session.rollback()
             return Failure(str(e))

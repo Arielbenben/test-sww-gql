@@ -1,6 +1,7 @@
 from graphql import GraphQLError
 from returns.maybe import Maybe, Nothing, Some
 from returns.result import Success, Failure
+from sqlalchemy import func
 from app.db.database import session_maker
 from app.db.models import Mission, Target, TargetType,City,Country
 
@@ -13,6 +14,7 @@ def add_mission(mission: Mission):
             session.refresh(mission)
             return Success(mission)
         except Exception as e:
+            session.rollback()
             return Failure(str(e))
 
 
@@ -76,6 +78,14 @@ def update_mission_results(mission_id: int, aircraft_returned: float, aircraft_f
         except Exception as e:
             return Failure(str(e))
 
+
+def get_statistics_on_missions_by_city(city_name: str):
+    with session_maker() as session:
+        number_missions = len(session.query(Mission).join(Mission.target)
+                                         .join(Target.city).filter(City.city_name == city_name).all())
+        average_priority = session.query(func.avg(Target.target_priority)).join(Target.city).filter(City.city_name == city_name).all()
+        aa = session.query(Target.target_priority)[0].filter(Target.target_priority != None).all()
+        return aa
 
 
 
