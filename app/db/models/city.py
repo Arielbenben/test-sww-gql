@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
 from app.db.models import Base
 
@@ -11,4 +12,6 @@ class City(Base):
     country_id = Column(Integer, ForeignKey('countries.country_id'))
     latitude = Column(Float)
     longitude = Column(Float)
+
+    country = relationship('Country', lazy="immediate")
 

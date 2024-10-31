@@ -4,8 +4,6 @@ from graphene import ObjectType,Int,String,Date,Float
 
 
 class MissionType(ObjectType):
-    id = Int()
-    region = String()
     mission_id = Int()
     mission_date = Date()
     airborne_aircraft = Float()

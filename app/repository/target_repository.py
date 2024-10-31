@@ -1,6 +1,6 @@
 from returns.result import Success,Failure
 from app.db.database import session_maker
-from app.db.models.target import Target
+from app.db.models import Target
 
 
 
