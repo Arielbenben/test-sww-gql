@@ -1,4 +1,4 @@
-from graphene import ObjectType,Int,String,Date,Float
+from graphene import ObjectType,Int,Date,Float
 
 
 

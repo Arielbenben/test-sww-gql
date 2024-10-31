@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer,String, Float,Date
+from sqlalchemy import Column, Integer,Float,Date
 from sqlalchemy.orm import relationship
-
 from app.db.models import Base
 
 
@@ -17,5 +16,5 @@ class Mission(Base):
     aircraft_damaged = Column(Float)
     aircraft_lost = Column(Float)
 
-    target = relationship('Target', back_populates='mission', cascade='all, delete-orphan', lazy="immediate")
+    target = relationship('Target', back_populates='mission', cascade='all, delete-orphan')
 

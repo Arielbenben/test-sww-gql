@@ -10,10 +10,6 @@ class AddMission(Mutation):
         airborne_aircraft = Float(required=True)
         attacking_aircraft = Float(required=True)
         bombing_aircraft = Float(required=True)
-        # aircraft_returned = Float(required=True)
-        # aircraft_failed = Float(required=True)
-        # aircraft_damaged = Float(required=True)
-        # aircraft_lost = Float(required=True)
 
     mission = Field(MissionType)
 
@@ -21,8 +17,8 @@ class AddMission(Mutation):
     def mutate(root, info, mission_date, airborne_aircraft, attacking_aircraft, bombing_aircraft):
         mission_to_insert = Mission(mission_date=mission_date, airborne_aircraft=airborne_aircraft, attacking_aircraft=attacking_aircraft,
                           bombing_aircraft=bombing_aircraft)
-        mission_inserted = add_mission(mission_to_insert)
-        return AddMission(mission=mission_inserted)
+        add_mission(mission_to_insert)
+        return AddMission(mission=mission_to_insert)
 
 
 class DeleteMission(Mutation):

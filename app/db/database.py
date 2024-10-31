@@ -1,7 +1,7 @@
-from sqlalchemy import create_engine, Column, Integer
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.settings.config import DB_URL
-from app.db.models import Base
+
 
 
 

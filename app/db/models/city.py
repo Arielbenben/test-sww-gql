@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy.orm import relationship
-
 from app.db.models import Base
 
 
@@ -13,5 +12,5 @@ class City(Base):
     latitude = Column(Float)
     longitude = Column(Float)
 
-    country = relationship('Country', lazy="immediate")
+    country = relationship('Country')
 

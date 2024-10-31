@@ -2,7 +2,7 @@ from graphql import GraphQLError
 from returns.maybe import Maybe, Nothing, Some
 from returns.result import Success, Failure
 from app.db.database import session_maker
-from app.db.models import Mission, Target, TargetType
+from app.db.models import Mission, Target, TargetType,City,Country
 
 
 def add_mission(mission: Mission):
@@ -44,18 +44,19 @@ def get_missions_between_dates(start_date, end_date):
 
 def get_mission_by_target_industry(target_industry: str):
     with session_maker() as session:
-        return session.query(Mission).filter(Mission.target.target_industry == target_industry).all()
+        return session.query(Mission).join(Mission.target).filter(Target.target_industry == target_industry).all()
 
 
 def get_mission_by_country_attack(mission_country: str):
     with session_maker() as session:
-        return session.query(Mission).filter(Mission.target.city.country.country_name == mission_country).all()
+        return session.query(Mission
+                             ).join(Mission.target).join(Target.city).join(City.country).filter(Country.country_name == mission_country).all()
 
 
 def get_mission_results_by_target_type(target_type: str):
     with (session_maker() as session):
-        return session.query(Mission.aircraft_returned, Mission.aircraft_failed, Mission.aircraft_damaged, Mission.aircraft_lost
-                             ).filter(Mission.target.target_type.target_type_name == target_type).all()
+        return session.query(Mission
+                             ).join(Mission.target).join(Target.target_type).filter(TargetType.target_type_name == target_type).all()
 
 
 def update_mission_results(mission_id: int, aircraft_returned: float, aircraft_failed: float,
