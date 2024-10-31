@@ -4,6 +4,7 @@ from app.gql.types.target_type import TargetType
 from app.repository.target_repository import add_target
 
 
+
 class AddTarget(Mutation):
     class Arguments:
         mission_id = Int()
