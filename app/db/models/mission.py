@@ -14,3 +14,4 @@ class Mission(Base):
     aircraft_failed = Column(Float)
     aircraft_damaged = Column(Float)
     aircraft_lost = Column(Float)
+

@@ -1,17 +1,17 @@
+from graphene import ObjectType, Field,Int
 
-
+from app.gql.types.mission_type import MissionType
+from app.repository.mission_repository import get_mission_by_id
 
 
 class Query(ObjectType):
     get_all_students = List(StudentType)
-    get_student_by_id = Field(StudentType, id=Int(required=True))
-    get_all_countries = List(CountryType)
-    get_country_by_id = Field(CountryType, id=Int(required=True))
-    get_all_vacations = List(StudentVacationType)
-    get_vacation_by_id = Field(StudentVacationType, id=Int(required=True))
+    get_mission_by_id = Field(MissionType, mission_id=Int(required=True))
+
 
 
 
     @staticmethod
-    def resolve_get_all_students(root, info):
-        return get_all_students()
+    def resolve_get_mission_by_id(root, info, mission_id):
+        return get_mission_by_id(mission_id).unwrap()
+
