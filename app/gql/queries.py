@@ -11,7 +11,7 @@ class Query(ObjectType):
     get_missions_by_country_attack = List(MissionType, m_country_attack=String(required=True))
     get_missions_by_target_industry = List(MissionType, target_industry=String(required=True))
     get_missions_results_by_target_type = List(MissionType, target_type=String(required=True))
-    get_statistic_on_missions_by_name = Float(city_name=String(required=True)), Float()
+    get_statistic_on_missions_by_name = List(Float, city_name=String(required=True))
 
 
     @staticmethod
